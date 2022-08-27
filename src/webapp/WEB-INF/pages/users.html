@@ -7,22 +7,7 @@
 </head>
 <body>
 
-<table>
-    <thead>
-    <tr>
-        <th scope="col">Model</th>
-        <th scope="col">Series</th>
-        <th scope="col">Price</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="cars: ${carsForShow}" >
-        <td th:text="${cars.getModel()}"/>
-        <td th:text="${cars.getSeries()}"/>
-        <td th:text="${cars.getPrice()}"/>
-    </tr>
-    </tbody>
-</table>
+<p th:text="${allUsers}"></p>
 
 </body>
 </html>
