@@ -23,8 +23,6 @@ public class User {
 //   @JoinColumn(name = "car_id", unique = true, nullable = false)
 //   private Car car;
 
-
-
    public User() {}
    
    public User(String firstName, String lastName, String email, Car car) {

@@ -1,14 +1,35 @@
 package web.dao;
 
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import web.model.User;
 
-import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
+    private List<User> listUsers = new ArrayList<>();
+
+    @Override
+    public void addUser(User user) {
+        listUsers.add(user);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+
+    }
+
+    @Override
+    public void changeUser(User user) {
+
+    }
+
+    @Override
+    public List<User> listUsers() {
+        return listUsers;
+    }
+
 //   private SessionFactory sessionFactory;
 //
 //   public UserDaoImp(SessionFactory sessionFactory) {
