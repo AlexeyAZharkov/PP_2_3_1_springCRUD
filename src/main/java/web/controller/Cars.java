@@ -16,7 +16,6 @@ public class Cars {
 						  Model model) {
 
 		CarServiceImp carServiceImp = new CarServiceImp();
-
 		carServiceImp.addCar(new Car("Vesta", 2022, 11000));
 		carServiceImp.addCar(new Car("Granta", 2021, 9000));
 		carServiceImp.addCar(new Car("Logan", 2018, 12000));
