@@ -1,6 +1,7 @@
 package web.dao;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import web.controller.Users;
 import web.model.User;
 
@@ -8,10 +9,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@Transactional
 public class UserDaoImp implements UserDao {
     private List<User> listUsers = new ArrayList<>();
 
@@ -28,58 +31,40 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void addUser(User user) {
-        listUsers.add(user);
+        entityManager.persist(user);
+
+        // INSERT INTO `spring_crud`.`users` (`email`, `name`, `last_name`) VALUES ('eee', 'rrr', 'rfrr');
+        // insert into DelinquentAccount (id, name) select c.id, c.name from Customer c
+        // update Customer c set c.name = :newName where c.name = :oldName
+
+//        String hqlInsert = "update User c set c.name = :newName where c.name = :oldName";
+//        String hqlInsert = "delete from User c where c.firstName = :oldName";
+//        int createdEntities = entityManager.createQuery( hqlInsert )
+//                .executeUpdate();
+//        entityManager.getTransaction().commit();
+//        listUsers.add(user);
     }
 
     @Override
-    public void deleteUser(User user) {
-
+    public void deleteUser(long id) {
+        User user = entityManager.getReference(User.class, id);
+        entityManager.remove(user);
     }
 
     @Override
     public void changeUser(User user) {
+        String hqlInsert = "update User u set u.firstName = :newName where u.firstName = :oldName";
+//        String hqlInsert = "delete from User c where c.firstName = :oldName";
+        entityManager.createQuery( hqlInsert );
 
     }
 
     @Override
     public List<User> listUsers() {
-        return listUsers;
+//        System.out.println(entityManager.createQuery("select u from User u", User.class).getResultList());
+        return entityManager.createQuery("select u from User u", User.class).getResultList();
+
+//        return listUsers;
     }
 
-//   private SessionFactory sessionFactory;
-//
-//   public UserDaoImp(SessionFactory sessionFactory) {
-//      this.sessionFactory = sessionFactory;
-//   }
-//
-//   @Override
-//   public void addUser(User user) {
-//      sessionFactory.getCurrentSession().save(user);
-//   }
-//
-//   public User findUserByCar(String model, int series) {
-//      TypedQuery<User> query=sessionFactory.getCurrentSession()
-//              .createQuery("select U from User U inner join U.car as C " +
-//                      "with C.series = :paramSeries and C.model = :paramModel ");
-//      query.setParameter("paramModel", model);
-//      query.setParameter("paramSeries", series);
-//      return query.getSingleResult();
-//   }
-//
-//   @Override
-//   @SuppressWarnings("unchecked")
-//   public List<User> listUsers() {
-//      TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
-//      return query.getResultList();
-//   }
-
 }
-//"""
-//CREATE TABLE `spring_crud`.`users` (
-//  `id` INT NOT NULL AUTO_INCREMENT,
-//  `name` VARCHAR(45) NOT NULL,
-//  `last_name` VARCHAR(45) NOT NULL,
-//  `email` VARCHAR(45) NOT NULL,
-//  PRIMARY KEY (`id`),
-//  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
-//"""

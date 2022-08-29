@@ -2,6 +2,7 @@ package web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,21 +13,31 @@ import web.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
 public class Users {
 	private final UserDao userDaoImp;
 
-//	static EntityManagerFactory emf = Persistence.createEntityManagerFactory("web");
-////	EntityManager em = emf.createEntityManager();
-//	public static EntityManager getEntityManager() {
-//		return emf.createEntityManager();
-//	}
-
 	public Users(UserDao userDaoImp) {
 		this.userDaoImp = userDaoImp;
 	}
+
+	@GetMapping(value = "/")
+	public String printWelcome(ModelMap model) {
+//		List<String> messages = new ArrayList<>();
+//		messages.add("Hello!");
+//		messages.add("I'm Spring MVC application");
+//		messages.add("5.2.0 version by sep'19 ");
+//		model.addAttribute("messages", messages);
+
+		model.addAttribute("allUsers", userDaoImp.listUsers());
+
+		return "index";
+	}
+
 
 	@GetMapping(value = "/users")
 	public String userPage(Model model) {
