@@ -12,14 +12,14 @@ import java.util.List;
 public class UserDaoImp implements UserDao {
     private List<User> listUsers = new ArrayList<>();
 
-    EntityManager em = Users.getEntityManager();
-
-    public Users getUser(Long id) {
-        EntityManager em = Users.getEntityManager();
-        Users user = em.find(Users.class, new Long(1));
-        em.detach(user);
-        return user;
-    }
+//    EntityManager em = Users.getEntityManager();
+//
+//    public Users getUser(Long id) {
+//        EntityManager em = Users.getEntityManager();
+//        Users user = em.find(Users.class, new Long(1));
+//        em.detach(user);
+//        return user;
+//    }
 
     @Override
     public void addUser(User user) {

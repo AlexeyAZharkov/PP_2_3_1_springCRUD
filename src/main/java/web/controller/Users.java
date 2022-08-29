@@ -18,11 +18,11 @@ import javax.persistence.Persistence;
 public class Users {
 	private final UserDao userDaoImp;
 
-	static EntityManagerFactory emf = Persistence.createEntityManagerFactory("web");
-//	EntityManager em = emf.createEntityManager();
-	public static EntityManager getEntityManager() {
-		return emf.createEntityManager();
-	}
+//	static EntityManagerFactory emf = Persistence.createEntityManagerFactory("web");
+////	EntityManager em = emf.createEntityManager();
+//	public static EntityManager getEntityManager() {
+//		return emf.createEntityManager();
+//	}
 
 	public Users(UserDao userDaoImp) {
 		this.userDaoImp = userDaoImp;
