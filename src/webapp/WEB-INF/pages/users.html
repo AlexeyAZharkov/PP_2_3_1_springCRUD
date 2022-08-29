@@ -27,11 +27,14 @@
         <td th:text="${user.getFirstName()}"/>
         <td th:text="${user.getLastName()}"/>
         <td th:text="${user.getEmail()}"/>
-        <td><a href="/edit">Edit user</a></td>
-        <td><a href="/edit">Delete user</a></td>
+        <td><a th:href="@{/edit(id=${user.id})}">Edit user</a></td>
+        <td><a th:href="@{/delete(id=${user.id})}">Delete user</a></td>
     </tr>
     </tbody>
 </table>
+
+<br>
+<a href="new">Add new User</a>
 
 </body>
 </html>

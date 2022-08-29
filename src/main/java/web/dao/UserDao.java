@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface UserDao {
     void addUser(User user);
-    void deleteUser(long id);
-    void changeUser(User user);
+    void deleteUser(Long id);
+    void editUser(Long id);
     List<User> listUsers();
 //    User findUserByCar(String model, int series);
 }

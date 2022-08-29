@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface UserService {
     void addUser(User user);
+    void editUser(Long id);
+    void deleteUser(Long id);
     List<User> listUsers();
 
 //    @Transactional(readOnly = true)

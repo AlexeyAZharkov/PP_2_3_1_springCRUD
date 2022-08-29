@@ -46,13 +46,13 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void deleteUser(long id) {
+    public void deleteUser(Long id) {
         User user = entityManager.getReference(User.class, id);
         entityManager.remove(user);
     }
 
     @Override
-    public void changeUser(User user) {
+    public void editUser(Long id) {
         String hqlInsert = "update User u set u.firstName = :newName where u.firstName = :oldName";
 //        String hqlInsert = "delete from User c where c.firstName = :oldName";
         entityManager.createQuery( hqlInsert );
