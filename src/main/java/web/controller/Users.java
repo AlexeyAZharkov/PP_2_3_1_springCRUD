@@ -9,10 +9,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import web.dao.UserDao;
 import web.model.User;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 
 @Controller
 public class Users {
 	private final UserDao userDaoImp;
+
+	static EntityManagerFactory emf = Persistence.createEntityManagerFactory("web");
+//	EntityManager em = emf.createEntityManager();
+	public static EntityManager getEntityManager() {
+		return emf.createEntityManager();
+	}
 
 	public Users(UserDao userDaoImp) {
 		this.userDaoImp = userDaoImp;

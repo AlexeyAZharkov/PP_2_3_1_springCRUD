@@ -3,11 +3,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>All users</title>
 </head>
 <body>
+<h1>All Users</h1>
+<!--<p th:text="${allUsers}"></p>-->
 
-<p th:text="${allUsers}"></p>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Edit User</th>
+        <th scope="col">Delete User</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${allUsers}" >
+        <td th:text="${user.getId()}"/>
+        <td th:text="${user.getFirstName()}"/>
+        <td th:text="${user.getLastName()}"/>
+        <td th:text="${user.getEmail()}"/>
+        <td><a href="/edit">Edit user</a></td>
+        <td><a href="/edit">Delete user</a></td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>
