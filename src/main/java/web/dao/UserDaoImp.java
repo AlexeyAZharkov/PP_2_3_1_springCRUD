@@ -5,6 +5,9 @@ import web.controller.Users;
 import web.model.User;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,14 +15,16 @@ import java.util.List;
 public class UserDaoImp implements UserDao {
     private List<User> listUsers = new ArrayList<>();
 
-//    EntityManager em = Users.getEntityManager();
-//
-//    public Users getUser(Long id) {
-//        EntityManager em = Users.getEntityManager();
-//        Users user = em.find(Users.class, new Long(1));
-//        em.detach(user);
-//        return user;
-//    }
+    @PersistenceContext
+    private EntityManager entityManager;
+
+
+//    entityManager.getTransaction().begin()
+
+//    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("web");
+//    EntityManager em = emf.createEntityManager();
+//    Users user = em.find(Users.class, 1);
+
 
     @Override
     public void addUser(User user) {
