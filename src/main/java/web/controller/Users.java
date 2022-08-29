@@ -67,8 +67,8 @@ public class Users {
 
 	@GetMapping("/edit")
 	public String editUser(@RequestParam(value = "id", required = false) Long id, Model model) {
-		model.addAttribute("user", userDaoImp.listUsers());
-		userServiceImp.editUser(id);
+		model.addAttribute("user", userDaoImp.getUserById(id));
+//		userServiceImp.editUser(id);
 		return "edit";
 	}
 

@@ -32,17 +32,6 @@ public class UserDaoImp implements UserDao {
     @Override
     public void addUser(User user) {
         entityManager.persist(user);
-
-        // INSERT INTO `spring_crud`.`users` (`email`, `name`, `last_name`) VALUES ('eee', 'rrr', 'rfrr');
-        // insert into DelinquentAccount (id, name) select c.id, c.name from Customer c
-        // update Customer c set c.name = :newName where c.name = :oldName
-
-//        String hqlInsert = "update User c set c.name = :newName where c.name = :oldName";
-//        String hqlInsert = "delete from User c where c.firstName = :oldName";
-//        int createdEntities = entityManager.createQuery( hqlInsert )
-//                .executeUpdate();
-//        entityManager.getTransaction().commit();
-//        listUsers.add(user);
     }
 
     @Override
@@ -57,6 +46,11 @@ public class UserDaoImp implements UserDao {
 //        String hqlInsert = "delete from User c where c.firstName = :oldName";
         entityManager.createQuery( hqlInsert );
 
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return entityManager.getReference(User.class, id);
     }
 
     @Override

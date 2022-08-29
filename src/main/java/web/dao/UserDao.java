@@ -8,6 +8,7 @@ public interface UserDao {
     void addUser(User user);
     void deleteUser(Long id);
     void editUser(Long id);
+    User getUserById(Long id);
     List<User> listUsers();
 //    User findUserByCar(String model, int series);
 }
