@@ -1,14 +1,12 @@
 package web.dao;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 import web.controller.Users;
 import web.model.User;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
+import javax.persistence.*;
 import javax.transaction.Transaction;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +14,9 @@ import java.util.List;
 @Repository
 @Transactional
 public class UserDaoImp implements UserDao {
-//    private List<User> listUsers = new ArrayList<>();
 
     @PersistenceContext
     private EntityManager entityManager;
-
 
     @Override
     public void addUser(User user) {
@@ -33,11 +29,6 @@ public class UserDaoImp implements UserDao {
         entityManager.remove(user);
     }
 
-//    @Override
-//    public void editUser(Long id) {
-//        String hqlInsert = "update User u set u.firstName = :newName where u.firstName = :oldName";
-//        entityManager.createQuery( hqlInsert );
-//    }
 
     @Override
     public void updateUser(Long id, User updatedUser) {

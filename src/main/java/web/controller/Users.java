@@ -11,11 +11,9 @@ import web.service.UserService;
 
 @Controller
 public class Users {
-//	private final UserDao userDaoImp;
 	private final UserService userServiceImp;
 
 	public Users(UserService userServiceImp) {
-//		this.userDaoImp = userDaoImp;
 		this.userServiceImp = userServiceImp;
 	}
 
@@ -31,7 +29,6 @@ public class Users {
 		userServiceImp.addUser(new User("Alex2", "Zh2", "ax22x@uu"));
 		return "redirect:/users";
 	}
-
 
 	@GetMapping(value = "/users")
 	public String userPage(Model model) {
@@ -67,14 +64,5 @@ public class Users {
 		userServiceImp.updateUser(id, user);
 		return "redirect:/users";
 	}
-
-
-//	@GetMapping("users/{id}")
-//	public String showUser(@PathVariable("id") Long id, Model model) {
-//		model.addAttribute("userbyid", userDaoImp.getUserById(id));
-////		model.addAttribute("user1", userDaoImp.getUserById(id).getEmail());
-////		System.out.println(1122);
-//		return "show";
-//	}
 
 }
