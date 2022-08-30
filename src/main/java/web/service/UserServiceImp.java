@@ -21,9 +21,14 @@ public class UserServiceImp implements UserService {
       userDao.addUser(user);
    }
 
+//   @Override
+//   public void editUser(Long id) {
+//      userDao.editUser(id);
+//   }
+
    @Override
-   public void editUser(Long id) {
-      userDao.editUser(id);
+   public void updateUser(Long id, User updatedUser) {
+      userDao.updateUser(id, updatedUser);
    }
 
    @Override
@@ -42,11 +47,5 @@ public class UserServiceImp implements UserService {
    public List<User> listUsers() {
       return userDao.listUsers();
    }
-
-//   @Transactional(readOnly = true)
-//   @Override
-//   public User findUserByCar(String model, int series){
-//      return userDao.findUserByCar(model, series);
-//   }
 
 }

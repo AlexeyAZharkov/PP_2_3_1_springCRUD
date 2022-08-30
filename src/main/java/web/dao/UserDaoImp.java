@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 @Transactional
 public class UserDaoImp implements UserDao {
-    private List<User> listUsers = new ArrayList<>();
+//    private List<User> listUsers = new ArrayList<>();
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -33,13 +33,11 @@ public class UserDaoImp implements UserDao {
         entityManager.remove(user);
     }
 
-    @Override
-    public void editUser(Long id) {
-        String hqlInsert = "update User u set u.firstName = :newName where u.firstName = :oldName";
-//        String hqlInsert = "delete from User c where c.firstName = :oldName";
-        entityManager.createQuery( hqlInsert );
-
-    }
+//    @Override
+//    public void editUser(Long id) {
+//        String hqlInsert = "update User u set u.firstName = :newName where u.firstName = :oldName";
+//        entityManager.createQuery( hqlInsert );
+//    }
 
     @Override
     public void updateUser(Long id, User updatedUser) {
@@ -51,16 +49,12 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User getUserById(Long id) {
-//        System.out.println(entityManager.getReference(User.class, id));
         return entityManager.getReference(User.class, id);
     }
 
     @Override
     public List<User> listUsers() {
-//        System.out.println(entityManager.createQuery("select u from User u", User.class).getResultList());
         return entityManager.createQuery("select u from User u", User.class).getResultList();
-
-//        return listUsers;
     }
 
 }

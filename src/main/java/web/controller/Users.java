@@ -11,34 +11,31 @@ import web.service.UserService;
 
 @Controller
 public class Users {
-	private final UserDao userDaoImp;
+//	private final UserDao userDaoImp;
 	private final UserService userServiceImp;
 
-	public Users(UserDao userDaoImp, UserService userServiceImp) {
-		this.userDaoImp = userDaoImp;
+	public Users(UserService userServiceImp) {
+//		this.userDaoImp = userDaoImp;
 		this.userServiceImp = userServiceImp;
 	}
 
 	@GetMapping(value = "/")
 	public String printWelcome(ModelMap model) {
-		userDaoImp.addUser(new User("Alex", "Zh", "axx@uu"));
-		userDaoImp.addUser(new User("Alex1", "Zh1", "ax11x@uu"));
-		userDaoImp.addUser(new User("Alex2", "Zh2", "ax22x@uu"));
-//		List<String> messages = new ArrayList<>();
-//		messages.add("Hello!");
-//		messages.add("I'm Spring MVC application");
-//		messages.add("5.2.0 version by sep'19 ");
-//		model.addAttribute("messages", messages);
-
-//		model.addAttribute("allUsers", userDaoImp.listUsers());
-
 		return "index";
+	}
+
+	@GetMapping(value = "/set3users")
+	public String set3users(ModelMap model) {
+		userServiceImp.addUser(new User("Alex", "Zh", "axx@uu"));
+		userServiceImp.addUser(new User("Alex1", "Zh1", "ax11x@uu"));
+		userServiceImp.addUser(new User("Alex2", "Zh2", "ax22x@uu"));
+		return "redirect:/users";
 	}
 
 
 	@GetMapping(value = "/users")
 	public String userPage(Model model) {
-		model.addAttribute("allUsers", userDaoImp.listUsers());
+		model.addAttribute("allUsers", userServiceImp.listUsers());
 		return "users";
 	}
 
@@ -49,44 +46,35 @@ public class Users {
 
 	@PostMapping("/new")
 	public String create(@ModelAttribute("user") User user) {
-		userDaoImp.addUser(user);
+		userServiceImp.addUser(user);
 		return "redirect:/users";
 	}
 
-
 	@GetMapping("/delete")
 	public String deleteUser(@RequestParam(value = "id", required = false) Long id) {
-		System.out.println(id);
 		userServiceImp.deleteUser(id);
 		return "redirect:/users";
 	}
 
 	@GetMapping("/edit")
 	public String editUser(@RequestParam(value = "id", required = false) Long id, Model model) {
-		model.addAttribute("user", userDaoImp.getUserById(id));
+		model.addAttribute("user", userServiceImp.getUserById(id));
 		return "edit";
 	}
 
 	@PostMapping("/updateuser/{id}")
 	public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
-		System.out.println(id);
-		System.out.println(user);
-		userDaoImp.updateUser(id, user);
+		userServiceImp.updateUser(id, user);
 		return "redirect:/users";
 	}
 
-//	@PatchMapping("/{id}")
-//	public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
-//		userDaoImp.updateUser(id,user);
-//		return "redirect:/users";
-//	}
 
-	@GetMapping("users/{id}")
-	public String showUser(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("userbyid", userDaoImp.getUserById(id));
-//		model.addAttribute("user1", userDaoImp.getUserById(id).getEmail());
-//		System.out.println(1122);
-		return "show";
-	}
+//	@GetMapping("users/{id}")
+//	public String showUser(@PathVariable("id") Long id, Model model) {
+//		model.addAttribute("userbyid", userDaoImp.getUserById(id));
+////		model.addAttribute("user1", userDaoImp.getUserById(id).getEmail());
+////		System.out.println(1122);
+//		return "show";
+//	}
 
 }
