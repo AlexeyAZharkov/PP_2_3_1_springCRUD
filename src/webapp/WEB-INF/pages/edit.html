@@ -8,23 +8,23 @@
 </head>
 <body>
 <h1>Edit user</h1>
-<form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{firstName}" id="name"/>
-    <br/>
-    <label for="age">Enter age: </label>
-    <input type="text" th:field="*{lastName}" id="age"/>
-    <br/>
-    <label for="email">Enter email: </label>
-    <input type="text" th:field="*{email}" id="email"/>
-<!--    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>-->
-    <br/>
-    <input type="submit" value="Update!"/>
-</form>
+<!--<form th:method="PATCH" th:action="@{/edit/{id}(id=${user.getId()})}" th:object="${user}">-->
+<!--    <label for="name">Enter name: </label>-->
+<!--    <input type="text" th:field="*{firstName}" id="name"/>-->
+<!--    <br/>-->
+<!--    <label for="last_name">Enter age: </label>-->
+<!--    <input type="text" th:field="*{lastName}" id="last_name"/>-->
+<!--    <br/>-->
+<!--    <label for="email">Enter email: </label>-->
+<!--    <input type="text" th:field="*{email}" id="email"/>-->
+<!--&lt;!&ndash;    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>&ndash;&gt;-->
+<!--    <br/>-->
+<!--    <input type="submit" value="Update!"/>-->
+<!--</form>-->
 
 <!--<form method="POST" action="/edit" object="user">-->
 <!--    <label for="name">Enter name: </label>-->
-<!--    <input type="text" field="firstName" id="id" th:value="${user}"/>-->
+<!--    <input type="text" field="firstName" id="id" th:value="${user.getFirstName()}"/>-->
 <!--    <label for="last_name">Enter Last Name: </label>-->
 <!--    <input type="text" th:field="*{user.lastName}" id="last_name"/>-->
 <!--    <label for="email">Enter Email: </label>-->
@@ -32,6 +32,18 @@
 <!--    <br/>-->
 <!--    <input type="submit" value="Create!"/>-->
 <!--</form>-->
+
+<form th:method="POST" th:action="@{/edit}" th:object="${user}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{firstName}" id="name" th:value="${user.getFirstName()}/>
+
+<!--    <label for="last_name">Enter Last Name: </label>-->
+<!--    <input type="text" th:field="*{lastName}" id="last_name" th:value="${user.getLastName()}/>-->
+<!--    <label for="email">Enter Email: </label>-->
+<!--    <input type="text" th:field="*{email}" id="email" th:value="${user.getEmail()}/>-->
+<!--    <br/>-->
+    <input type="submit" value="Create!"/>
+</form>
 
 </body>
 </html>

@@ -22,13 +22,6 @@ public class UserDaoImp implements UserDao {
     private EntityManager entityManager;
 
 
-//    entityManager.getTransaction().begin()
-
-//    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("web");
-//    EntityManager em = emf.createEntityManager();
-//    Users user = em.find(Users.class, 1);
-
-
     @Override
     public void addUser(User user) {
         entityManager.persist(user);
@@ -49,7 +42,16 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
+    public void updateUser(Long id, User updatedUser) {
+        User userToBeUpdated = getUserById(id);
+        userToBeUpdated.setFirstName(updatedUser.getFirstName());
+        userToBeUpdated.setLastName(updatedUser.getLastName());
+        userToBeUpdated.setEmail(updatedUser.getEmail());
+    }
+
+    @Override
     public User getUserById(Long id) {
+//        System.out.println(entityManager.getReference(User.class, id));
         return entityManager.getReference(User.class, id);
     }
 

@@ -72,4 +72,18 @@ public class Users {
 		return "edit";
 	}
 
+	@PatchMapping("/{id}")
+	public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
+		userDaoImp.updateUser(id,user);
+		return "redirect:/users";
+	}
+
+	@GetMapping("users/{id}")
+	public String showUser(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("userbyid", userDaoImp.getUserById(id));
+//		model.addAttribute("user1", userDaoImp.getUserById(id).getEmail());
+//		System.out.println(1122);
+		return "show";
+	}
+
 }
