@@ -1,8 +1,10 @@
 package web.config;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
@@ -28,16 +30,25 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         return new String[]{"/"};
     }
 
-    /* Алишев добавил */
+    /* https://javarush.ru/groups/posts/2253-znakomstvo-s-maven-spring-mysql-hibernate-i-pervoe-crud-prilozhenie-chastjh-1 для кодировки - не помогло */
     @Override
-    public void onStartup(ServletContext aServletContext) throws ServletException {
-        super.onStartup(aServletContext);
-        registerHiddenFieldFilter(aServletContext);
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+        return new Filter[] {characterEncodingFilter};
     }
 
-    private void registerHiddenFieldFilter(ServletContext aContext) {
-        aContext.addFilter("hiddenHttpMethodFilter",
-                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
-    }
+    /* Алишев добавил - не использую */
+//    @Override
+//    public void onStartup(ServletContext aServletContext) throws ServletException {
+//        super.onStartup(aServletContext);
+//        registerHiddenFieldFilter(aServletContext);
+//    }
+//
+//    private void registerHiddenFieldFilter(ServletContext aContext) {
+//        aContext.addFilter("hiddenHttpMethodFilter",
+//                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
+//    }
 
 }
