@@ -22,28 +22,28 @@
 <!--    <input type="submit" value="Update!"/>-->
 <!--</form>-->
 
-<!--<form method="POST" action="/edit" object="user">-->
+<form method="POST" th:action="@{/updateuser/{id}(id=${user.getId()})}" object="user">
+    <label for="name">Enter new name: </label>
+    <input type="text" th:field="*{user.firstName}" id="name" th:value="${user.getFirstName()}"/>
+    <label for="last_name">Enter new Last Name: </label>
+    <input type="text" th:field="*{user.lastName}" id="last_name"/>
+    <label for="email">Enter new Email: </label>
+    <input type="text" th:field="*{user.email}" id="email"/>
+    <br/>
+    <input type="submit" value="Update!"/>
+</form>
+
+<!--<form th:method="POST" th:action="@{/edit}" th:object="${user}">-->
 <!--    <label for="name">Enter name: </label>-->
-<!--    <input type="text" field="firstName" id="id" th:value="${user.getFirstName()}"/>-->
-<!--    <label for="last_name">Enter Last Name: </label>-->
-<!--    <input type="text" th:field="*{user.lastName}" id="last_name"/>-->
-<!--    <label for="email">Enter Email: </label>-->
-<!--    <input type="text" th:field="*{user.email}" id="email"/>-->
-<!--    <br/>-->
-<!--    <input type="submit" value="Create!"/>-->
-<!--</form>-->
+<!--    <input type="text" th:field="*{firstName}" id="name" th:value="${user.getFirstName()}"/>-->
 
-<form th:method="POST" th:action="@{/edit}" th:object="${user}">
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{firstName}" id="name" th:value="${user.getFirstName()}/>
-
-<!--    <label for="last_name">Enter Last Name: </label>-->
+<!--&lt;!&ndash;    <label for="last_name">Enter Last Name: </label>&ndash;&gt;-->
 <!--    <input type="text" th:field="*{lastName}" id="last_name" th:value="${user.getLastName()}/>-->
 <!--    <label for="email">Enter Email: </label>-->
 <!--    <input type="text" th:field="*{email}" id="email" th:value="${user.getEmail()}/>-->
 <!--    <br/>-->
-    <input type="submit" value="Create!"/>
-</form>
+<!--    <input type="submit" value="Create!"/>-->
+<!--</form>-->
 
 </body>
 </html>

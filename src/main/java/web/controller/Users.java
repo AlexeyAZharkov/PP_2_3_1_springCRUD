@@ -53,14 +53,10 @@ public class Users {
 		return "redirect:/users";
 	}
 
-//	@PostMapping("/edituser")
-//	public String edituser(@ModelAttribute("user") User user) {
-//		userDaoImp.editUser(user);
-//		return "redirect:/users";
-//	}
 
 	@GetMapping("/delete")
 	public String deleteUser(@RequestParam(value = "id", required = false) Long id) {
+		System.out.println(id);
 		userServiceImp.deleteUser(id);
 		return "redirect:/users";
 	}
@@ -68,15 +64,22 @@ public class Users {
 	@GetMapping("/edit")
 	public String editUser(@RequestParam(value = "id", required = false) Long id, Model model) {
 		model.addAttribute("user", userDaoImp.getUserById(id));
-//		userServiceImp.editUser(id);
 		return "edit";
 	}
 
-	@PatchMapping("/{id}")
+	@PostMapping("/updateuser/{id}")
 	public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
-		userDaoImp.updateUser(id,user);
+		System.out.println(id);
+		System.out.println(user);
+		userDaoImp.updateUser(id, user);
 		return "redirect:/users";
 	}
+
+//	@PatchMapping("/{id}")
+//	public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
+//		userDaoImp.updateUser(id,user);
+//		return "redirect:/users";
+//	}
 
 	@GetMapping("users/{id}")
 	public String showUser(@PathVariable("id") Long id, Model model) {
