@@ -4,16 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import web.dao.UserDao;
 import web.model.User;
 import web.service.UserService;
 
 
 @Controller
-public class Users {
+public class UsersController {
 	private final UserService userServiceImp;
 
-	public Users(UserService userServiceImp) {
+	public UsersController(UserService userServiceImp) {
 		this.userServiceImp = userServiceImp;
 	}
 

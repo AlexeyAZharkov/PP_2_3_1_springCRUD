@@ -8,7 +8,6 @@ import web.model.User;
 import java.util.List;
 
 @Service
-@Transactional
 public class UserServiceImp implements UserService {
    private UserDao userDaoImp = new UserDaoImp();
 
@@ -16,16 +15,19 @@ public class UserServiceImp implements UserService {
       this.userDaoImp = userDaoImp;
    }
 
+   @Transactional
    @Override
    public void addUser(User user) {
       userDaoImp.addUser(user);
    }
 
+   @Transactional
    @Override
    public void updateUser(Long id, User updatedUser) {
       userDaoImp.updateUser(id, updatedUser);
    }
 
+   @Transactional
    @Override
    public void deleteUser(Long id) {
       userDaoImp.deleteUser(id);

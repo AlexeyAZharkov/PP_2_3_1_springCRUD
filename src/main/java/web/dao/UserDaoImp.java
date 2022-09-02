@@ -1,18 +1,12 @@
 package web.dao;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.Transactional;
-import web.controller.Users;
 import web.model.User;
 
 import javax.persistence.*;
-import javax.transaction.Transaction;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-@Transactional
 public class UserDaoImp implements UserDao {
 
     @PersistenceContext
@@ -29,13 +23,9 @@ public class UserDaoImp implements UserDao {
         entityManager.remove(user);
     }
 
-
     @Override
     public void updateUser(Long id, User updatedUser) {
-        User userToBeUpdated = getUserById(id);
-        userToBeUpdated.setFirstName(updatedUser.getFirstName());
-        userToBeUpdated.setLastName(updatedUser.getLastName());
-        userToBeUpdated.setEmail(updatedUser.getEmail());
+        entityManager.merge(updatedUser);
     }
 
     @Override
